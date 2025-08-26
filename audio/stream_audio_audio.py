@@ -59,6 +59,7 @@ config = types.LiveConnectConfig(
         language_code="en-US",
     ),    
     
+    
     realtime_input_config=types.RealtimeInputConfig(
         
         # https://googleapis.github.io/python-genai/genai.html#genai.types.ActivityHandling

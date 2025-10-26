@@ -23,8 +23,7 @@ response = client.recognize(config=config, audio=audio)
 
 for i, result in enumerate(response.results):
     alternative = result.alternatives[0]
-    print("-" * 20)
-    print(f"First alternative of result {i}")
+    #print(f"First alternative of result {i}")
     print(f"Transcript: {alternative.transcript}")
 
 # return response.results

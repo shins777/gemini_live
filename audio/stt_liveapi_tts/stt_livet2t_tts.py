@@ -4,9 +4,9 @@ import sys
 import asyncio
 
 from google.cloud import speech
-from audio.live_native.microphone import MicrophoneStream
-from audio.live_native import live_text2text 
-from audio.live_native import chirp3_tts
+from audio.stt_liveapi_tts.microphone import MicrophoneStream
+from audio.stt_liveapi_tts import live_text2text 
+from audio.stt_liveapi_tts import chirp3_tts
 from google.cloud import texttospeech_v1beta1 as texttospeech
 from google.api_core.client_options import ClientOptions
 

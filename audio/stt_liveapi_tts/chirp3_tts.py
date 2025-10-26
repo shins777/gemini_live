@@ -10,7 +10,6 @@ import numpy as np
 def init():
     # Load configuration from environment variables
     LOCATION = "global"
-    PROJECT_ID = "ai-hangsik"
     
     API_ENDPOINT = (
         f"{LOCATION}-texttospeech.googleapis.com"

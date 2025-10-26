@@ -15,14 +15,9 @@ from google.genai.types import (
     ProactivityConfig,
 )
 
-#--------------- Configuration and Initialization ---------------#
-def init():
-    # Load configuration from environment variables
-    LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
-    PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT", "ai-hangsik")
-
-    client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
-    return client
+LOCATION = "us-central1"
+PROJECT_ID = "ai-hangsik"
+MODEL_ID = "gemini-live-2.5-flash-preview-native-audio-09-2025"
 
 #--------------- Session configuration ---------------#
 
@@ -113,7 +108,8 @@ async def run_live_session(
     system_instruction = config.system_instruction
     print(f"**System Instruction:** *{system_instruction}*")
     
-    client = init()
+    client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
+
 
     try:
         # Use an asynchronous context manager to establish and manage the session lifecycle
@@ -155,7 +151,6 @@ async def main():
         "I tried adjusting the temperature settings, but it still doesn't cool effectively.",
     ]
 
-    MODEL_ID = os.environ.get("GOOGLE_GEMINI_LIVE_MODEL", "gemini-live-2.5-flash-preview-native-audio-09-2025")
     results = await run_live_session(MODEL_ID, affective_config, affective_dialog_turns)
 
 asyncio.run(main())

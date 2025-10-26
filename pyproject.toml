@@ -5,6 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "google-cloud-speech>=2.34.0",
+    "google-cloud-texttospeech>=2.33.0",
     "google-genai>=1.31.0",
+    "numpy>=2.3.4",
+    "playsound==1.2.2",
     "pyaudio>=0.2.14",
+    "pyobjc>=12.0",
 ]

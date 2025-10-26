@@ -19,10 +19,23 @@ This directory contains example Python scripts that demonstrate streaming microp
 - Or use your preferred tooling that reads [pyproject.toml](pyproject.toml).
 
 ## Usage
+
+First, authenticate to GCP 
+```
+gcloud auth application-default login
+```
+
+Run the examples with the following command. 
+
 - Stream microphone -> text responses:
-  - uv run -m audio.stream_audio_text
+```
+uv run -m audio.stream_audio_text
+```
+
 - Stream microphone -> audio responses :
-  - uv run -m audio.stream_audio_audio
+```
+uv run -m audio.stream_audio_audio
+```
 
 ## Notes
 - Edit the MODEL constant and the client configuration directly in the example scripts if needed.

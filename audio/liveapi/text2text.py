@@ -17,7 +17,7 @@ from google.genai.types import (
 
 # ---------------------------------------------------------------------
 # 파일 목적 (요약)
-# - 이 스크립트는 Google Gemini Live Connect (genai.live)를 사용하여
+# - 이 스크립트는 Google Gemini Live 를 사용하여
 #   텍스트 기반의 대화를 모델과 실시간(스트리밍)으로 주고받는 예제입니다.
 # - 주요 기능:
 #   1) LiveConnectConfig 생성 (전사, proactivity 등 옵션 포함)
@@ -35,7 +35,7 @@ from google.genai.types import (
 # ---------------------------------------------------------------------
 
 # 기본 환경/모델 설정(프로젝트/리전/모델 아이디)
-# 실제 배포 시에는 환경변수 또는 구성 파일로 관리할 것.
+# 실제 배포 시에는 환경변수 또는 구성 파일로 관리가능.
 LOCATION = "us-central1"
 PROJECT_ID = "ai-hangsik"
 MODEL_ID = "gemini-live-2.5-flash-preview-native-audio-09-2025"
@@ -63,14 +63,17 @@ def configure_session(
       - proactivity 옵션은 ProactivityConfig(proactive_audio=True)로 매핑됩니다.
       - LiveConnectConfig 객체를 구성하여 반환합니다.
     """
-    # 전사 기능 활성화 여부에 따라 전사 config 객체 생성 또는 None
+    
+    # 오디오 전사 설정 생성 (활성화된 경우)
     input_transcription = AudioTranscriptionConfig() if enable_transcription else None
     output_transcription = AudioTranscriptionConfig() if enable_transcription else None
+
     # 모델 측의 proactive audio(선제 발화) 활성화 설정
     proactivity = (ProactivityConfig(proactive_audio=True) if enable_proactivity else None)
 
     # LiveConnectConfig 생성: 여기서는 응답 modality로 AUDIO를 사용하도록 설정
-    # 필요에 따라 TEXT 또는 둘 다로 변경 가능
+    # 현재 AUDIO 모달리티만 지원됨.
+    
     config = LiveConnectConfig(
         response_modalities=["AUDIO"],
         system_instruction=system_instruction,

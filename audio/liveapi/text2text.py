@@ -73,7 +73,7 @@ def configure_session(
 
     # LiveConnectConfig 생성: 여기서는 응답 modality로 AUDIO를 사용하도록 설정
     # 현재 AUDIO 모달리티만 지원됨.
-    
+
     config = LiveConnectConfig(
         response_modalities=["AUDIO"],
         system_instruction=system_instruction,
@@ -225,7 +225,9 @@ async def main():
         enable_transcription=True,
         enable_proactivity=True,
         enable_affective_dialog=True,
-        system_instruction="You are a assistant to help the customer with their questions about products and services.",
+        system_instruction="""You are a assistant to help the customer with their questions about products and services. 
+
+        """,
     )
 
     affective_dialog_turns = [

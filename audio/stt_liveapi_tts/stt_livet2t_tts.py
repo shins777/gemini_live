@@ -8,6 +8,7 @@
 import re
 import sys
 import asyncio
+import time
 
 # Google Cloud Speech-to-Text (동기/스트리밍 클라이언트)
 from google.cloud import speech
@@ -95,6 +96,10 @@ async def listen_print_loop(responses: object) -> str:
 
     # responses는 blocking 제너레이터일 수 있으므로 순회하면서 처리
     for response in responses:
+        
+
+        start_time = time.perf_counter()
+
         # response.results가 비어있으면 이벤트(예: 서버 상태)만 온 것이므로 건너뜀
         if not response.results:
             continue
@@ -122,6 +127,9 @@ async def listen_print_loop(responses: object) -> str:
             # 1) 콘솔 출력 (확정 전사)
             print(transcript + overwrite_chars)
             received_final = transcript + overwrite_chars
+
+            end_time = time.perf_counter()
+            print(f"Elapsed Time for STT streaming response : {(end_time - start_time):.6f} seconds")
 
             # 2) Gemini Live 세션에 최종 전사 전달(동일 프로세스 내 재사용 세션)
             #    live_text2text.call_live은 내부에서 세션을 시작하거나 기존 세션을 재사용함
